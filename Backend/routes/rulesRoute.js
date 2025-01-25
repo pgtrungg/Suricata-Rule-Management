@@ -1,0 +1,11 @@
+const express = require('express');
+const rulesController = require('../controllers/rulesController');
+const authMiddleware = require('../middlewares/authMiddleware');
+const rulesRoute = express.Router();
+rulesRoute.get('/',authMiddleware, rulesController.getRules);
+rulesRoute.post('/', authMiddleware,rulesController.addRule);
+rulesRoute.put('/:sid',authMiddleware, rulesController.updateRule);
+rulesRoute.delete('/:sid',authMiddleware, rulesController.deleteRule);
+rulesRoute.put('/disable/:sid',authMiddleware, rulesController.disableRule);
+rulesRoute.put('/enable/:sid',authMiddleware, rulesController.enableRule);
+module.exports = rulesRoute;
